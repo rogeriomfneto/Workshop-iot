@@ -36,7 +36,6 @@ var server = net.createServer(function (socket) {
   
   function broadcast(message, sender) {
     clients.forEach(function (client) {
-      if (client === sender) return;
       client.write(message);
     });
     process.stdout.write(message)
