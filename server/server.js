@@ -19,6 +19,7 @@ var server = net.createServer(function(socket) {
 
     socket.on('error', function(err){
         console.log(err);
+        clients.splice(clients.indexOf(socket), 1);
     });
 });
 
