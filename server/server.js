@@ -8,7 +8,7 @@ var server = net.createServer(function(socket) {
     console.log("Novo cliente");
 
     // Quando um clientes desconectar, tiramos ele da lista
-    socket.on('end', function () {
+    socket.on('close', function () {
         clients.splice(clients.indexOf(socket), 1);
     });
 
@@ -20,7 +20,7 @@ var server = net.createServer(function(socket) {
 
     socket.on('error', function(err){
         console.log(err);
-        socket.close();
+        socket.end();
     });
 });
 

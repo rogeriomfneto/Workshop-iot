@@ -39,11 +39,11 @@ void loop() {
 
   while (client.connected()) {
     while (client.available()) {
-      Serial.print(client.read());
+      Serial.print((char) client.read());
     }
   
     while (Serial.available()) {
-      client.print(Serial.read());
+      client.print((char) Serial.read());
     }
   }
 
