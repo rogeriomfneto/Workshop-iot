@@ -16,11 +16,16 @@ var server = net.createServer(function(socket) {
         for (i in clients)
             clients[i].write(data);
     })
+
+    socket.on('error', function(err){
+        console.log(err);
+    });
 });
 
 server.on('error', function(err){
     console.log(err);
 });
+
 
 server.listen(8000, function() {
     console.log("Servidor iot na porta 8000");

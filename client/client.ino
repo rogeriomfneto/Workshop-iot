@@ -1,12 +1,13 @@
 #include <ESP8266WiFi.h>
 
-const char* ssid     = "Lufa Lufa - 2.4GHz";
-const char* password = "your-password";
+const char* ssid     = "CCSL";
+const char* password = "flossrulez";
 const char* host = "35.198.24.33";
 
 void setup() {
   Serial.begin(115200);
 
+  delay(1000);
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -45,6 +46,7 @@ void loop() {
       client.print(Serial.read());
     }
   }
+
   client.stop();
   Serial.println();
   Serial.println("closing connection");
