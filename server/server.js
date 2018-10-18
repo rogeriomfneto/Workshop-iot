@@ -3,7 +3,7 @@ net = require('net');
 
 var clients = [];
 
-net.createServer(function (socket) {
+var server = net.createServer(function (socket) {
 
   socket.name = socket.remoteAddress + ":" + socket.remotePort 
 
@@ -29,4 +29,7 @@ net.createServer(function (socket) {
     process.stdout.write(message)
   }
 
-}).listen(8000);
+});
+
+server.timeout = 0;
+server.listen(8000);
