@@ -18,8 +18,8 @@ var server = net.createServer(function (socket) {
     buffer = buffer + data;
 
     while (buffer.indexOf('\n') != -1) {
-        var str = a.substr(0, buffer.indexOf('\n'));
-        a = a.substr(buffer.indexOf('\n')+1);
+        var str = buffer.substr(0, buffer.indexOf('\n'));
+        buffer = buffer.substr(buffer.indexOf('\n')+1);
         broadcast(socket.name + "> " + str, socket);
     }
   });
