@@ -13,13 +13,14 @@ var server = net.createServer(function(socket) {
     });
 
     socket.on('data', function (data) {
+        console.log(data);
         for (i in clients)
             clients[i].write(data);
     })
 
     socket.on('error', function(err){
         console.log(err);
-        clients.splice(clients.indexOf(socket), 1);
+        socket.close();
     });
 });
 

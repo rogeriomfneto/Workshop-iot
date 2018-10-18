@@ -38,7 +38,7 @@ void loop() {
   }
 
   while (client.connected()) {
-    while (client.available() != 0) {
+    while (client.available()) {
       Serial.print(client.read());
     }
   
