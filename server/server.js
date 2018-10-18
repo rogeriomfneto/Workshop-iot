@@ -5,7 +5,9 @@ var clients = [];
 
 var server = net.createServer(function (socket) {
 
-  socket.name = socket.remotePort 
+  socket.name = socket.remoteAddress + ":" + socket.remotePort;
+  var buffer = "";
+
 
   clients.push(socket);
 
@@ -13,7 +15,13 @@ var server = net.createServer(function (socket) {
   broadcast(socket.name + " joined the chat\n", socket);
 
   socket.on('data', function (data) {
-    broadcast(socket.name + "> " + data, socket);
+    buffer = buffer + data;
+
+    while (buffer.indexOf('\n') != -1) {
+        var str = a.substr(0, buffer.indexOf('\n'));
+        a = a.substr(buffer.indexOf('\n')+1);
+        broadcast(socket.name + "> " + str, socket);
+    }
   });
 
   socket.on('end', function () {
@@ -23,7 +31,7 @@ var server = net.createServer(function (socket) {
 
   socket.on('error', function (err) {
     clients.splice(clients.indexOf(socket), 1);
-    console.log(err)
+    console.log(err);
   });
   
   function broadcast(message, sender) {
