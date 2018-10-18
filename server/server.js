@@ -20,6 +20,10 @@ var server = net.createServer(function (socket) {
     clients.splice(clients.indexOf(socket), 1);
     broadcast(socket.name + " left the chat.\n");
   });
+
+  socket.on('error', function (err) {
+    console.log(err)
+  });
   
   function broadcast(message, sender) {
     clients.forEach(function (client) {
