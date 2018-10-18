@@ -34,7 +34,6 @@ var server = net.createServer(function (socket) {
     clients.forEach(function (client) {
       client.write(message);
     });
-    process.stdout.write(message)
   }
 });
 
